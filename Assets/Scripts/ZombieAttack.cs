@@ -7,12 +7,15 @@ public class ZombieAttack : MonoBehaviour
 {
     float CurentTime=0f;
     float StartingTime=5f;
+    float WaitTime=0f;
     private Animator anim1;
     private Rigidbody2D rb1; 
     [SerializeField] private Animator anim;
     [SerializeField] private Rigidbody2D rb; 
     [SerializeField] private float minDistance;
     [SerializeField] private GameObject gm;
+    [SerializeField] private GameObject gm1;
+    [SerializeField] private TakeDMG dmg;
     //[SerializeField] private Collider2D collision;
     void Start()
     {
@@ -26,13 +29,19 @@ public class ZombieAttack : MonoBehaviour
          if(Vector2.Distance(gm.transform.position,transform.position)<minDistance)
          {
             CurentTime-=1*Time.deltaTime;
-           
+            WaitTime+=1*Time.deltaTime;
             
             if(CurentTime<0f)
             { 
+                if(WaitTime>5f)
+                {
+                    anim1.SetTrigger("attck");
+                    dmg.LoseHealth(10);
+                    WaitTime=0;
+                    anim1.SetTrigger("move");
+                }
+                    
                 
-                anim1.SetTrigger("attck");
-                Die();
             }
             
          }
@@ -52,12 +61,16 @@ public class ZombieAttack : MonoBehaviour
             CurentTime=StartingTime;
         } 
     }
-    private void Die()
+    public void Die()
     {
         
-        rb.bodyType=RigidbodyType2D.Static;
+        
         anim.SetTrigger("death");
         
+    }
+    private void destroy()
+    {
+        Destroy(gm1);
     }
     
 }

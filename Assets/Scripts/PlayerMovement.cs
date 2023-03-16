@@ -42,11 +42,11 @@ public class PlayerMovement : MonoBehaviour
         }
         else if(dirY>.0) {
             state=MovementState.run; 
-            sprite.flipX=false;
+            
         }
         else if(dirY<.0) {
             state=MovementState.run;
-            sprite.flipX=true;
+            
         }
         else
         {
@@ -60,4 +60,5 @@ public class PlayerMovement : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
+    
 }
