@@ -7,12 +7,19 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] float AttackDMG;
     [SerializeField] Animator anim;
     [SerializeField] Animator animSkely;
-    [SerializeField] private GameObject gm;
+    
+    //[SerializeField]
+    private GameObject gm;
     
     private int skelyHealth=10;
     private int playerDMG=10;
+    private void Start() {
+    //gm=GetComponent<GameObject>();
+        
+    }
     void Update()
     {
+        gm=GameObject.FindGameObjectWithTag("Skeleton");
         if(Input.GetMouseButtonDown(0))
         {
             anim.SetBool("IsHit",true);
@@ -23,6 +30,7 @@ public class PlayerAttack : MonoBehaviour
                 if(skelyHealth<=0f)
                 {
                     animSkely.SetBool("Die",true);
+                    
 
                 }
             }

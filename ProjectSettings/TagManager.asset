@@ -6,6 +6,7 @@ TagManager:
   tags:
   - New tag
   - Players
+  - Skeleton
   layers:
   - Default
   - TransparentFX
